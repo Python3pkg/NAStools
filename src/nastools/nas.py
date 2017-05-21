@@ -10,14 +10,14 @@ def parse_header(self):
     # get the filetype and specify the seperator
     
     f = self._fileObj_
-    self.HEADER_LINES, self.FFI = map(int, f.readline().split())
+    self.HEADER_LINES, self.FFI = list(map(int, f.readline().split()))
     self.PI = f.readline().strip()
     self.ORGANIZATION = f.readline().strip()
     self.DATA_DESCRIPTION = f.readline().strip()
     self.MISSION = f.readline().strip()
-    self.FILE_VOL_NO, self.NO_VOL = map(int, f.readline().split())
+    self.FILE_VOL_NO, self.NO_VOL = list(map(int, f.readline().split()))
 
-    i = map(int, f.readline().split())
+    i = list(map(int, f.readline().split()))
     self.START_UTC = datetime.datetime(i[0],i[1],i[2]) # UTC date when data begin
     self.REV_UTC =  datetime.date(i[3],i[4],i[5]) # UTC date of data red or rev
 
@@ -34,7 +34,7 @@ def parse_header(self):
     self.INDEPENDENT_VARIABLE = {'NAME':j[0].strip(), 'DESC':j[1].strip('()')}
     
     self.TOTAL_NUM_VARIABLES = int(f.readline().strip())+1
-    self.SCALE_FACTORS = self.SCALE_FACTORS = map(float, f.readline().split())
+    self.SCALE_FACTORS = self.SCALE_FACTORS = list(map(float, f.readline().split()))
     # self.MISSING_DATA_FLAGS = map(float, f.readline().split(','))
     self.MISSING_DATA_FLAGS = f.readline().strip().split()
 

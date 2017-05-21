@@ -1,1 +1,1 @@
-from _core import Naspy
+from ._core import Naspy

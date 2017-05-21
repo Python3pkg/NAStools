@@ -19,8 +19,8 @@ import pytz
 utc = pytz.UTC
 
 #### SUB-MODULE DEPENDENCIES
-import ict
-import nas
+from . import ict
+from . import nas
 
 
 
@@ -313,7 +313,7 @@ class Naspy(object):
         else:
             missingVals = self.missing_values(missing_values)
         
-        for key, val in missingVals.iteritems():
+        for key, val in missingVals.items():
             df[df.columns[key]] = df[df.columns[key]].replace(val, np.nan)
         
         return df
@@ -351,7 +351,7 @@ class Naspy(object):
             missingVals[key] = str(flag).strip()
         
         # append missing flags to each column
-        for key, value in missingVals.iteritems():
+        for key, value in missingVals.items():
             j = list(otherFlags) # Copy list
             j.insert(0, value) # insert default missing flag first
             missingVals[key] = j # Reassign
@@ -367,9 +367,9 @@ class Naspy(object):
             lines.append(f.readline())
             i += 1
         f.close()
-        print ''
+        print('')
         for line in lines:
-            print line.rstrip('\n')
+            print(line.rstrip('\n'))
         return None
     
     def get_header_size(self):
@@ -434,7 +434,7 @@ class Header(object):
     # TODO: build up header funtions 
     
     def contact_info(self):
-        print """
+        print("""
         PRIMARY INVESTIGATOR(S)
         ----------------------- 
         %s
@@ -446,7 +446,7 @@ class Header(object):
         CONTACT INFO
         ------------
         %s
-        """ % (self.PI, self.ORGANIZATION, self.PI_CONTACT_INFO)
+        """ % (self.PI, self.ORGANIZATION, self.PI_CONTACT_INFO))
         return None
     
     def data_description(self):
